@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    awesome_print (1.6.1)
+    byebug (9.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  awesome_print
+  byebug
+
+RUBY VERSION
+   ruby 2.2.2p95
+
+BUNDLED WITH
+   1.12.3
