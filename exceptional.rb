@@ -2,7 +2,7 @@
 
 def test_one
   # raise Exception.new("Why then")
-  fail 'Why now?'
+  raise 'Why now?'
 rescue => e
   puts "e[#{e}]"
 end
@@ -20,7 +20,7 @@ end
 def test_four
   # fail "One"
   begin
-    fail "Two"
+    raise 'Two'
   rescue => e
     puts "e2[#{e}]"
   end
@@ -29,8 +29,8 @@ rescue => e
 end
 
 def test_five
-  fail "WTF"
-  false
+  raise 'WTF'
+  # false
 rescue
   nil
 end
@@ -40,6 +40,7 @@ puts test_two
 # test_three
 test_four
 test = test_five
+puts test.inspect
 if test
   puts 'trueish'
 else
