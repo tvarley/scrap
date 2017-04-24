@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
-# Monkey path <tt>String</tt> to include undercode
-# The goal is to convert a
+# Monkey patch <tt>String</tt> to include underscore
 class String
   def underscore
     word = dup
@@ -27,19 +26,31 @@ class Association
   def through
     @through || false
   end
-
 end
 
 class FileDepends
   attr_accessor :name
+  attr_accessor :associations
   attr_reader :base
 
   def initialize(name)
     @name = name
   end
 
-  def base
+  def base # This is a comment
     Pathname.new(@name).basename
+  end
+
+  def associations
+    if @associations.nil?
+      File.open(@name, 'r') do |f|
+        f.each_line do |line|
+          # Strip out all commented code
+          line.tr
+          /#.*\n/
+        end
+      end
+    end
   end
 end
 
@@ -51,6 +62,8 @@ dependable_files = []
 
 Dir.glob(Pathname.new(scan_dir).join('**').join('*.rb')).each do |filename|
   dependable_files << FileDepends.new(filename)
+
+
 end
 
 dependable_files.each { |dp| puts dp.base }
