@@ -10,13 +10,10 @@ def detect_breaks( source, break_gap )
   last = result[0]
   source.each do |curr|
     gap = (curr - last)
-    if gap < break_gap
-      last = curr
-      next
-    end
+    last = curr
+    next if gap < break_gap
     result << last
     result << curr
-    last = curr
   end
   result << source.last
   result
